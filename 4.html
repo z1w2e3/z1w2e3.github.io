@@ -14,10 +14,16 @@
             position: relative;
             width: 100%;
             height: 100vh; /* Adjust the height as needed */
-            border: 0;
+            overflow: auto; /* Add scrolling if the pages don't fit the screen */
         }
         canvas {
             display: block; /* Removes bottom gap */
+        }
+        .page {
+            margin: 10px auto;
+            page-break-after: always;
+            width: 100%;
+            max-width: 800px; /* Adjust the max-width as needed */
         }
     </style>
 </head>
@@ -52,7 +58,7 @@
             for (var pageNum = 1; pageNum <= numPages; pageNum++) {
                 pdfDoc_
 .getPage(pageNum).then(function(page) {
-                    var scale = 1; // You can adjust the scale here
+                    var scale = 1; // Adjust the scale to fit the screen
                     var viewport = page.getViewport({ scale: scale });
 
                     // Prepare canvas using PDF page dimensions
@@ -63,11 +69,13 @@
                     canvas
 .width = viewport.width;
 
-                    // Append the canvas to the pdf-viewer div
-                    var div = document.createElement('div');
-                    div
+                    // Create a container for each page
+                    var pageDiv = document.createElement('div');
+                    pageDiv
+.className = 'page';
+                    pageDiv
 .appendChild(canvas);
-                    document.getElementById('pdf-viewer').appendChild(div);
+                    document.getElementById('pdf-viewer').appendChild(pageDiv);
 
                     // Render PDF page into canvas context
                     var renderContext = {
@@ -84,6 +92,7 @@
         console.error('Error: ' + reason);
     });
 </script>
+
 </body>
     <br>
     <a href="./index.html">返回主页面</a>
