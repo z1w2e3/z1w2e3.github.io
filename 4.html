@@ -26,41 +26,59 @@
 <div id="pdf-viewer"></div>
 
 <!-- PDF.js library -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script> 
 <!-- PDF.js worker -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js"></script> 
 
 <script>
     // Specify the path to the PDF file
-    var pdfUrl = '锡元素我为元素代言(2).pdf'; // <<<--- You need to modify this line
+    var pdfUrl = '锡元素我为元素代言(2).pdf'; // Replace this with your actual PDF file URL
 
     // Set the worker src for the worker option
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js';
+    pdfjsLib
+.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js';
 
     // Asynchronous download of the PDF
-    pdfjsLib.getDocument(pdfUrl).promise.then(function(pdfDoc_) {
+    pdfjsLib
+.getDocument(pdfUrl).promise.then(function(pdfDoc_) {
         console.log("PDF loaded");
 
-        // Get the first page from the PDF
-        pdfDoc_.getPage(1).then(function(page) {
-            var scale = 1; // Adjust the scale to fit the screen
-            var viewport = page.getViewport({ scale: scale });
+        // Get the total number of pages in the PDF
+        pdfDoc_
+.numPages.then(function(numPages) {
+            console.log("Total Pages: " + numPages);
 
-            // Prepare canvas using PDF page dimensions
-            var canvas = document.createElement('canvas');
-            var context = canvas.getContext('2d');
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
+            // Render all pages
+            for (var pageNum = 1; pageNum <= numPages; pageNum++) {
+                pdfDoc_
+.getPage(pageNum).then(function(page) {
+                    var scale = 1; // You can adjust the scale here
+                    var viewport = page.getViewport({ scale: scale });
 
-            // Append the canvas to the pdf-viewer div
-            document.getElementById('pdf-viewer').appendChild(canvas);
+                    // Prepare canvas using PDF page dimensions
+                    var canvas = document.createElement('canvas');
+                    var context = canvas.getContext('2d');
+                    canvas
+.height = viewport.height;
+                    canvas
+.width = viewport.width;
 
-            // Render PDF page into canvas context
-            var renderContext = {
-                canvasContext: context,
-                viewport: viewport
-            };
-            page.render(renderContext);
+                    // Append the canvas to the pdf-viewer div
+                    var div = document.createElement('div');
+                    div
+.appendChild(canvas);
+                    document.getElementById('pdf-viewer').appendChild(div);
+
+                    // Render PDF page into canvas context
+                    var renderContext = {
+                        canvasContext: context,
+                        viewport:
+ viewport
+                    };
+                    page
+.render(renderContext);
+                });
+            }
         });
     }).catch(function(reason) {
         console.error('Error: ' + reason);
