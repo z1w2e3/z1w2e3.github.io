@@ -3,76 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF.js Viewer</title>
+    <title>Vertical Image Gallery</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f7f7f7f7;
         }
-        #pdf-viewer {
-            position: relative;
-            width: 100%;
-            height: 100vh; /* Adjust the height as needed */
-            border: 0;
+        .image-container {
+            display: flex;
+            flex-direction: column; /* 垂直排列图片 */
+            align-items: center; /* 水平居中对齐图片 */
+            padding: 20px; /* 添加一些内边距 */
         }
-        canvas {
-            display: block; /* Removes bottom gap */
+        .image-container img {
+            max-width: 100%; /* 图片宽度最大为容器宽度 */
+            height: auto; /* 图片高度自动 */
+            margin-bottom: 10px; /* 图片之间的间隔 */
+            border: 2px solid #ddd; /* 图片边框 */
+            border-radius: 4px; /* 图片圆角 */
+            padding: 5px; /* 图片内边距 */
+        }
+        .image-container img:last-child {
+            margin-bottom: 0; /* 移除最后一张图片的底部间隔 */
         }
     </style>
 </head>
 <body>
 
-<div id="pdf-viewer"></div>
-
-<!-- PDF.js library -->
-<script src="<url id="" type="url" status="" title="" wc=""><url id="" type="url" status="" title="" wc="">https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script></url></url>  
-<!-- PDF.js worker -->
-<script src="<url id="" type="url" status="" title="" wc=""><url id="" type="url" status="" title="" wc="">https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js"></script></url></url>  
-
-<script>
-    // Specify the path to the PDF file
-    var pdfUrl = '
-锡元素我为元素代言(2).pdf&#39;;
-    // <<<--- You need to modify this line
-
-    // Set the worker src for the worker option
-    pdfjsLib.GlobalWorkerOptions.workerSrc = '
-https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js&#39;;   
-
-    // Asynchronous download of the PDF
-    pdfjsLib.getDocument(pdfUrl).promise.then(function(pdfDoc_) {
-        console.log("PDF loaded");
-
-        // Get the first page from the PDF
-        pdfDoc_.getPage(1).then(function(page) {
-            var scale = 1; // Adjust the scale to fit the screen
-            var viewport = page.getViewport({ scale: scale });
-
-            // Prepare canvas using PDF page dimensions
-            var canvas = document.createElement('canvas');
-            var context = canvas.getContext('2d');
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
-
-            // Append the canvas to the pdf-viewer div
-            document.getElementById('pdf-viewer').appendChild(canvas);
-
-            // Render PDF page into canvas context
-            var renderContext = {
-                canvasContext: context,
-                viewport: viewport
-            };
-            page.render(renderContext);
-        });
-    }).catch(function(reason) {
-        console.error('Error: ' + reason);
-    });
-</script>
+    <div class="image-container">
+        <!-- 插入图片 -->
+        <img src="锡元素我为元素代言(2)_page-0001.jpg" alt="描述文字1">
+        <img src="锡元素我为元素代言(2)_page-0002.jpg" alt="描述文字2">
+        <img src="锡元素我为元素代言(2)_page-0003.jpg" alt="描述文字3">
+        <img src="锡元素我为元素代言(2)_page-0004.jpg" alt="描述文字4">
+		<img src="锡元素我为元素代言(2)_page-0005.jpg" alt="描述文字5"><!-- 根据需要继续添加更多图片 -->
+		<img src="锡元素我为元素代言(2)_page-0006.jpg" alt="描述文字6">
+		<img src="锡元素我为元素代言(2)_page-0007.jpg" alt="描述文字7">
+    </div>
 
 </body>
-
-    <br>
-    <a href="./index.html">返回主页面</a>
-
 </html>
