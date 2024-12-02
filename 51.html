@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertical Image Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7f7;
+        }
+        .image-container {
+            display: flex;
+            flex-direction: column; /* 垂直排列图片 */
+            align-items: center; /* 水平居中对齐图片 */
+            padding: 20px; /* 添加一些内边距 */
+        }
+        .image-container img {
+            max-width: 100%; /* 图片宽度最大为容器宽度 */
+            height: auto; /* 图片高度自动 */
+            margin-bottom: 10px; /* 图片之间的间隔 */
+            border: 2px solid #ddd; /* 图片边框 */
+            border-radius: 4px; /* 图片圆角 */
+            padding: 5px; /* 图片内边距 */
+        }
+        .image-container img:last-child {
+            margin-bottom: 0; /* 移除最后一张图片的底部间隔 */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="image-container">
+        <!-- 插入图片 -->
+        <img src="关于锑的介绍_page-0001.jpg" alt="描述文字1">
+        <img src="关于锑的介绍_page-0002.jpg" alt="描述文字2">
+        <img src="关于锑的介绍_page-0003.jpg" alt="描述文字3">
+        <img src="关于锑的介绍_page-0004.jpg" alt="描述文字4">
+		<img src="关于锑的介绍_page-0005.jpg" alt="描述文字5"><!-- 根据需要继续添加更多图片 -->
+		
+    </div>
+    <br>
+    <a href="./index.html">返回主页面</a>
+</body>
+
+</html>
