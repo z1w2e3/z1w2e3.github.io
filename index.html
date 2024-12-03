@@ -1,0 +1,655 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>元素周期表H5版</title>
+    <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/uikit@2.27.4/dist/css/uikit.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/uikit@2.27.4/dist/css/uikit.almost-flat.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+
+    <script>
+        window.elements = [
+            [' 名称 ', ' 符号 ', ' 分类 ', ' 质量 ', ' 电子分布 ', ' 内容 '],
+            [' 氢 ', 'H', 'non-metals', 1.0080, [1], ' 新增字段内容 1'],
+            [' 氦 ', 'He', 'noble-gases', 4.0026, [2], ' 新增字段内容 2'],
+            [' 锂 ', 'Li', 'alkalai-metals', 6.94, [2, 1], ' 新增字段内容 3'],
+            [' 铍 ', 'Be', 'alkaline-earths', 9.0122, [2, 2], ' 新增字段内容 4'],
+            [' 硼 ', 'B', 'semi-metals', 10.81, [2, 3], ' 新增字段内容 5'],
+            [' 碳 ', 'C', 'non-metals', 12.011, [2, 4], ' 新增字段内容 6'],
+            [' 氮 ', 'N', 'non-metals', 14.007, [2, 5], ' 新增字段内容 7'],
+            [' 氧 ', 'O', 'non-metals', 15.999, [2, 6], ' 新增字段内容 8'],
+            [' 氟 ', 'F', 'halogens', 18.998, [2, 7], ' 新增字段内容 9'],
+            [' 氖 ', 'Ne', 'noble-gases', 20.180, [2, 8], ' 新增字段内容 10'],
+            [' 钠 ', 'Na', 'alkalai-metals', 22.990, [2, 8, 1], ' 新增字段内容 11'],
+            [' 镁 ', 'Mg', 'alkaline-earths', 24.305, [2, 8, 2], ' 新增字段内容 12'],
+            [' 铝 ', 'Al', 'other-metals', 26.982, [2, 8, 3], ' 新增字段内容 13'],
+            [' 硅 ', 'Si', 'semi-metals', 28.085, [2, 8, 4], ' 新增字段内容 14'],
+            [' 磷 ', 'P', 'non-metals', 30.974, [2, 8, 5], ' 新增字段内容 15'],
+            [' 硫 ', 'S', 'non-metals', 32.06, [2, 8, 6], ' 新增字段内容 16'],
+            [' 氯 ', 'Cl', 'halogens', 35.45, [2, 8, 7], ' 新增字段内容 17'],
+            [' 氩 ', 'Ar', 'noble-gases', 39.95, [2, 8, 8], ' 新增字段内容 18'],
+            [' 钾 ', 'K', 'alkalai-metals', 39.098, [2, 8, 8, 1], ' 新增字段内容 19'],
+            [' 钙 ', 'Ca', 'alkaline-earths', 40.078, [2, 8, 8, 2], ' 新增字段内容 20'],
+            [' 钪 ', 'Sc', 'transition-metals', 44.956, [2, 8, 9, 2], ' 新增字段内容 21'],
+            [' 钛 ', 'Ti', 'transition-metals', 47.867, [2, 8, 10, 2], ' 新增字段内容 22'],
+            [' 钒 ', 'V', 'transition-metals', 50.942, [2, 8, 11, 2], ' 新增字段内容 23'],
+            [' 铬 ', 'Cr', 'transition-metals', 51.996, [2, 8, 13, 1], ' 新增字段内容 24'],
+            [' 锰 ', 'Mn', 'transition-metals', 54.938, [2, 8, 13, 2], ' 新增字段内容 25'],
+            [' 铁 ', 'Fe', 'transition-metals', 55.845, [2, 8, 14, 2], ' 新增字段内容 26'],
+            [' 钴 ', 'Co', 'transition-metals', 58.933, [2, 8, 15, 2], ' 新增字段内容 27'],
+            [' 镍 ', 'Ni', 'transition-metals', 58.693, [2, 8, 16, 2], ' 新增字段内容 28'],
+            [' 铜 ', 'Cu', 'transition-metals', 63.546, [2, 8, 18, 1], ' 新增字段内容 29'],
+            [' 锌 ', 'Zn', 'transition-metals', 65.38, [2, 8, 18, 2], ' 新增字段内容 30'],
+            [' 镓 ', 'Ga', 'other-metals', 69.723, [2, 8, 18, 3], ' 新增字段内容 31'],
+            [' 锗 ', 'Ge', 'semi-metals', 72.630, [2, 8, 18, 4], ' 新增字段内容 32'],
+            [' 砷 ', 'As', 'semi-metals', 74.922, [2, 8, 18, 5], ' 新增字段内容 33'],
+            [' 硒 ', 'Se', 'non-metals', 78.971, [2, 8, 18, 6], ' 新增字段内容 34'],
+            [' 溴 ', 'Br', 'halogens', 79.904, [2, 8, 18, 7], ' 新增字段内容 35'],
+            [' 氪 ', 'Kr', 'noble-gases', 83.798, [2, 8, 18, 8], ' 新增字段内容 36'],
+            [' 铷 ', 'Rb', 'alkalai-metals', 85.468, [2, 8, 18, 8, 1], ' 新增字段内容 37'],
+            [' 锶 ', 'Sr', 'alkaline-earths', 87.62, [2, 8, 18, 8, 2], ' 新增字段内容 38'],
+            [' 钇 ', 'Y', 'transition-metals', 88.906, [2, 8, 18, 9, 2], ' 新增字段内容 39'],
+            [' 锆 ', 'Zr', 'transition-metals', 91.224, [2, 8, 18, 10, 2], ' 新增字段内容 40'],
+            [' 铌 ', 'Nb', 'transition-metals', 92.906, [2, 8, 18, 12, 1], ' 新增字段内容 41'],
+            [' 钼 ', 'Mo', 'transition-metals', 95.95, [2, 8, 18, 13, 1], ' 新增字段内容 42'],
+            [' 锝 ', 'Tc', 'transition-metals', 97, [2, 8, 18, 13, 2], ' 新增字段内容 43'],
+            [' 钌 ', 'Ru', 'transition-metals', 101.07, [2, 8, 18, 15, 1], ' 新增字段内容 44'],
+            [' 铑 ', 'Rh', 'transition-metals', 102.91, [2, 8, 18, 16, 1], ' 新增字段内容 45'],
+            [' 钯 ', 'Pd', 'transition-metals', 106.42, [2, 8, 18, 18], ' 新增字段内容 46'],
+            [' 银 ', 'Ag', 'transition-metals', 107.87, [2, 8, 18, 18, 1], ' 新增字段内容 47'],
+            [' 镉 ', 'Cd', 'transition-metals', 112.41, [2, 8, 18, 18, 2], ' 新增字段内容 48'],
+            [' 铟 ', 'In', 'other-metals', 114.82, [2, 8, 18, 18, 3], ' 新增字段内容 49'],
+            [' 锡 ', 'Sn', 'other-metals', 118.71, [2, 8, 18, 18, 4], ' 新增字段内容 50'],
+            [' 锑 ', 'Sb', 'semi-metals', 121.76, [2, 8, 18, 18, 5], ' 新增字段内容 51'],
+            [' 碲 ', 'Te', 'semi-metals', 127.60, [2, 8, 18, 18, 6], ' 新增字段内容 52'],
+            [' 碘 ', 'I', 'halogens', 126.90, [2, 8, 18, 18, 7], ' 新增字段内容 53'],
+            [' 氙 ', 'Xe', 'noble-gases', 131.29, [2, 8, 18, 18, 8], ' 新增字段内容 54'],
+            [' 铯 ', 'Cs', 'alkalai-metals', 132.91, [2, 8, 18, 18, 8, 1], ' 新增字段内容 55'],
+            [' 钡 ', 'Ba', 'alkaline-earths', 137.33, [2, 8, 18, 18, 8, 2], ' 新增字段内容 56'],
+            [' 镧 ', 'La', 'lanthanides', 138.91, [2, 8, 18, 18, 9, 2], ' 新增字段内容 57'],
+            [' 铈 ', 'Ce', 'lanthanides', 140.12, [2, 8, 18, 19, 9, 2], ' 新增字段内容 58'],
+            [' 镨 ', 'Pr', 'lanthanides', 140.91, [2, 8, 18, 21, 8, 2], ' 新增字段内容 59'],
+            [' 钕 ', 'Nd', 'lanthanides', 144.24, [2, 8, 18, 22, 8, 2], ' 新增字段内容 60'],
+            [' 钷 ', 'Pm', 'lanthanides', 145, [2, 8, 18, 23, 8, 2], ' 新增字段内容 61'],
+            [' 钐 ', 'Sm', 'lanthanides', 150.36, [2, 8, 18, 24, 8, 2], ' 新增字段内容 62'],
+            [' 铕 ', 'Eu', 'lanthanides', 151.96, [2, 8, 18, 25, 8, 2], ' 新增字段内容 63'],
+            [' 钆 ', 'Gd', 'lanthanides', 157.25, [2, 8, 18, 25, 9, 2], ' 新增字段内容 64'],
+            [' 铽 ', 'Tb', 'lanthanides', 158.93, [2, 8, 18, 27, 8, 2], ' 新增字段内容 65'],
+            [' 镝 ', 'Dy', 'lanthanides', 162.50, [2, 8, 18, 28, 8, 2], ' 新增字段内容 66'],
+            [' 钬 ', 'Ho', 'lanthanides', 164.93, [2, 8, 18, 29, 8, 2], ' 新增字段内容 67'],
+            [' 铒 ', 'Er', 'lanthanides', 167.26, [2, 8, 18, 30, 8, 2], ' 新增字段内容 68'],
+            [' 铥 ', 'Tm', 'lanthanides', 168.93, [2, 8, 18, 31, 8, 2], ' 新增字段内容 69'],
+            [' 镱 ', 'Yb', 'lanthanides', 173.05, [2, 8, 18, 32, 8, 2], ' 新增字段内容 70'],
+            [' 镥 ', 'Lu', 'lanthanides', 174.97, [2, 8, 18, 32, 9, 2], ' 新增字段内容 71'],
+            [' 铪 ', 'Hf', 'transition-metals', 178.49, [2, 8, 18, 32, 10, 2], ' 新增字段内容 72'],
+            [' 钽 ', 'Ta', 'transition-metals', 180.95, [2, 8, 18, 32, 11, 2], ' 新增字段内容 73'],
+            [' 钨 ', 'W', 'transition-metals', 183.84, [2, 8, 18, 32, 12, 2], ' 新增字段内容 74'],
+            [' 铼 ', 'Re', 'transition-metals', 186.21, [2, 8, 18, 32, 13, 2], ' 新增字段内容 75'],
+            [' 锇 ', 'Os', 'transition-metals', 190.23, [2, 8, 18, 32, 14, 2], ' 新增字段内容 76'],
+            [' 铱 ', 'Ir', 'transition-metals', 192.22, [2, 8, 18, 32, 15, 2], ' 新增字段内容 77'],
+            [' 铂 ', 'Pt', 'transition-metals', 195.08, [2, 8, 18, 32, 17, 1], ' 新增字段内容 78'],
+            [' 金 ', 'Au', 'transition-metals', 196.97, [2, 8, 18, 32, 18, 1], ' 新增字段内容 79'],
+            [' 汞 ', 'Hg', 'transition-metals', 200.59, [2, 8, 18, 32, 18, 2], ' 新增字段内容 80'],
+            [' 铊 ', 'Tl', 'other-metals', 204.38, [2, 8, 18, 32, 18, 3], ' 新增字段内容 81'],
+            [' 铅 ', 'Pb', 'other-metals', 207.2, [2, 8, 18, 32, 18, 4], ' 新增字段内容 82'],
+            [' 铋 ', 'Bi', 'other-metals', 208.98, [2, 8, 18, 32, 18, 5], ' 新增字段内容 83'],
+            [' 钋 ', 'Po', 'semi-metals', 209, [2, 8, 18, 32, 18, 6], ' 新增字段内容 84'],
+            [' 砹 ', 'At', 'halogens', 210, [2, 8, 18, 32, 18, 7], ' 新增字段内容 85'],
+            [' 氡 ', 'Rn', 'noble-gases', 222, [2, 8, 18, 32, 18, 8], ' 新增字段内容 86'],
+            [' 钫 ', 'Fr', 'alkalai-metals', 223, [2, 8, 18, 32, 18, 8, 1], ' 新增字段内容 87'],
+            [' 镭 ', 'Ra', 'alkaline-earths', 226, [2, 8, 18, 32, 18, 8, 2], ' 新增字段内容 88'],
+            [' 锕 ', 'Ac', 'actinides', 227, [2, 8, 18, 32, 18, 9, 2], ' 新增字段内容 89'],
+            [' 钍 ', 'Th', 'actinides', 232.04, [2, 8, 18, 32, 18, 10, 2], ' 新增字段内容 90'],
+            [' 镤 ', 'Pa', 'actinides', 231.04, [2, 8, 18, 32, 20, 9, 2], ' 新增字段内容 91'],
+            [' 铀 ', 'U', 'actinides', 238.03, [2, 8, 18, 32, 21, 9, 2], ' 新增字段内容 92'],
+            [' 镎 ', 'Np', 'actinides', 237, [2, 8, 18, 32, 22, 9, 2], ' 新增字段内容 93'],
+            [' 钚 ', 'Pu', 'actinides', 244, [2, 8, 18, 32, 24, 8, 2], ' 新增字段内容 94'],
+            [' 镅 ', 'Am', 'actinides', 243, [2, 8, 18, 32, 25, 8, 2], ' 新增字段内容 95'],
+            [' 锔 ', 'Cm', 'actinides', 247, [2, 8, 18, 32, 25, 9, 2], ' 新增字段内容 96'],
+            [' 锫 ', 'Bk', 'actinides', 247, [2, 8, 18, 32, 27, 8, 2], ' 新增字段内容 97'],
+            [' 锎 ', 'Cf', 'actinides', 251, [2, 8, 18, 32, 28, 8, 2], ' 新增字段内容 98'],
+            [' 锿 ', 'Es', 'actinides', 252, [2, 8, 18, 32, 29, 8, 2], ' 新增字段内容 99'],
+            [' 镄 ', 'Fm', 'actinides', 257, [2, 8, 18, 32, 30, 8, 2], ' 新增字段内容 100'],
+            [' 钔 ', 'Md', 'actinides', 258, [2, 8, 18, 32, 31, 8, 2], ' 新增字段内容 101'],
+            [' 锘 ', 'No', 'actinides', 259, [2, 8, 18, 32, 32, 8, 2], ' 新增字段内容 102'],
+            [' 铹 ', 'Lr', 'actinides', 266, [2, 8, 18, 32, 32, 8, 3], ' 新增字段内容 103'],
+            ['𬬻', 'Rf', 'transition-metals', 267, [2, 8, 18, 32, 32, 10, 2], ' 新增字段内容 104'],
+            ['𬭊', 'Db', 'transition-metals', 268, [2, 8, 18, 32, 32, 11, 2], ' 新增字段内容 105'],
+            ['𬭳', 'Sg', 'transition-metals', 269, [2, 8, 18, 32, 32, 12, 2], ' 新增字段内容 106'],
+            ['𬭛', 'Bh', 'transition-metals', 270, [2, 8, 18, 32, 32, 13, 2], ' 新增字段内容 107'],
+            ['𬭶', 'Hs', 'transition-metals', 277, [2, 8, 18, 32, 32, 14, 2], ' 新增字段内容 108'],
+            [' 鿏 ', 'Mt', 'transition-metals', 278, [2, 8, 18, 32, 32, 15, 2], ' 新增字段内容 109'],
+            ['𫟼', 'Ds', 'transition-metals', 281, [2, 8, 18, 32, 32, 16, 2], ' 新增字段内容 110'],
+            ['𬬭', 'Rg', 'transition-metals', 282, [2, 8, 18, 32, 32, 17, 2], ' 新增字段内容 111'],
+            [' 鿔 ', 'Cn', 'transition-metals', 285, [2, 8, 18, 32, 32, 18, 2], ' 新增字段内容 112'],
+            [' 鿭 ', 'Nh', 'uncategorized', 286, [2, 8, 18, 32, 32, 18, 3], ' 新增字段内容 113'],
+            ['𫓧', 'Fl', 'uncategorized', 289, [2, 8, 18, 32, 32, 18, 4], ' 新增字段内容 114'],
+            [' 镆 ', 'Mc', 'uncategorized', 290, [2, 8, 18, 32, 32, 18, 5], ' 新增字段内容 115'],
+            ['𫟷', 'Lv', 'uncategorized', 293, [2, 8, 18, 32, 32, 18, 6], ' 新增字段内容 116'],
+            [' 鿬 ', 'Ts', 'uncategorized', 294, [2, 8, 18, 32, 32, 18, 7], ' 新增字段内容 117'],
+            [' 鿫 ', 'Og', 'uncategorized', 294, [2, 8, 18, 32, 32, 18, 8], ' 新增字段内容 118']
+        ]
+        $(function () {
+            init();
+        });
+
+      function init() {
+          let
+              $focus = $('#focus'),
+              $focusIndex = $focus.find('span.index'),
+              $focusSymbol = $focus.find('span.symbol'),
+              $focusName = $focus.find('h3'),
+              $focusQuality = $focus.find('span.quality'),
+              $atomic = $('#atomic'),
+              $atomicN = $atomic.find('.atomic-n').find('.text'),
+              $atomicEs = [
+                  $atomic.find('div[data-index=0]').find('.text'),
+                  $atomic.find('div[data-index=1]').find('.text'),
+                  $atomic.find('div[data-index=2]').find('.text'),
+                  $atomic.find('div[data-index=3]').find('.text'),
+                  $atomic.find('div[data-index=4]').find('.text'),
+                  $atomic.find('div[data-index=5]').find('.text'),
+                  $atomic.find('div[data-index=6]').find('.text')
+              ];
+          $('table.periodic td.element').each(function () {
+              let
+                  $td = $(this),
+                  index = parseInt($td.attr('data-index'));
+              if (!isNaN(index)) {
+                  let element = window.elements[index],
+                      name = element[0],
+                      symbol = element[1],
+                      category = element[2],
+                      quality = element[3],
+                      econfigs = element[4],
+                      content = element[5],
+                      i;
+                  $td.addClass(category);
+                  $td.append(`
+                      <span class="index">${index}</span>
+                      <span class="symbol">${symbol}</span>
+                      <h3>
+                          ${name}
+                      </h3>
+                  `);
+                  // 添加 title 属性设置为元素名称，鼠标悬停元素格子显示元素名称
+                  $td.attr('title', content);
+                  let bgColor = $td.css('background-color');
+                  // 修改点击事件处理，添加正确的路径
+                  $td.click(function () {
+                      window.location.href = `./${index}.html`;
+                  });
+                  $td.mouseenter(function () {
+                      $focusIndex.text(index);
+                      $focusSymbol.text(symbol);
+                      $focusName.text(name);
+                      $focusQuality.text(quality);
+                      $focus.css('background-color', bgColor);
+                      $atomicN.text('+' + index);
+                      for (i = 0; i < econfigs.length; i++) {
+                          $atomicEs[i].text(econfigs[i]);
+                          $atomicEs[i].parent().css('visibility', 'visible');
+                      }
+                      for (i = econfigs.length; i < 7; i++) {
+                          $atomicEs[i].parent().css('visibility', 'hidden');
+                      }
+                  });
+                  if (index === 6) {
+                      $td.trigger('mouseenter');
+                  }
+              }
+          });
+      }
+    </script>
+
+    <style>
+        table.periodic {
+            border-spacing: 4px;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        table.periodic tr td {
+            border-width: 0;
+            text-align: center;
+        }
+
+        table.periodic tr td.col {
+            vertical-align: bottom;
+        }
+
+        table.periodic tr td.element {
+            width: 56px;
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #999;
+            cursor: pointer;
+        }
+
+        table.periodic tr td.element:hover {
+            opacity: 0.8;
+            box-shadow: 0 0 0 3px rgb(153 153 153 / 25%);
+        }
+
+        div.element {
+            display: block;
+            width: 64px;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #999;
+        }
+
+        .element h3 {
+            margin: 30px 0 5px 0;
+            position: relative;
+            display: block;
+        }
+
+        .element span.index {
+            display: block;
+            float: left;
+            margin: 3px 0 0 3px;
+        }
+
+        .element span.symbol {
+            display: block;
+            float: right;
+            margin: 3px 3px 0 0;
+        }
+
+        table.periodic tr td.element.non-metals {
+            background-color: #bdfff8;
+        }
+
+        table.periodic tr td.element.noble-gases {
+            background-color: #f7cef6;
+        }
+
+        table.periodic tr td.element.halogens {
+            background-color: #d2bafa;
+        }
+
+        table.periodic tr td.element.alkalai-metals {
+            background-color: #ffa8a5;
+        }
+
+        table.periodic tr td.element.alkaline-earths {
+            background-color: #ffba6c;
+        }
+
+        table.periodic tr td.element.transition-metals {
+            background-color: #fffaae;
+        }
+
+        table.periodic tr td.element.other-metals {
+            background-color: #a2eaab;
+        }
+
+        table.periodic tr td.element.semi-metals {
+            background-color: #c7fdba;
+        }
+
+        table.periodic tr td.element.lanthanides {
+            background-color: #fdc0a4;
+        }
+
+        table.periodic tr td.element.actinides {
+            background-color: #fee1be;
+        }
+
+        table.periodic tr td.element.uncategorized {
+            background-color: #e3e3e3;
+        }
+
+        #atomic {
+            display: block;
+            width: 220px;
+        }
+
+        #atomic div.atomic-n {
+            display: block;
+            position: relative;
+            width: 40px;
+            height: 100px;
+            overflow: hidden;
+        }
+
+        #atomic div.atomic-n div.circle {
+            z-index: -999;
+            position: absolute;
+            border-radius: 18px;
+            width: 36px;
+            height: 36px;
+            left: 2px;
+            top: 31px;
+            display: block;
+            border: 1px solid #333;
+        }
+
+        #atomic div.atomic-n div.text {
+            text-align: center;
+            display: inline-block;
+            margin-top: 40px;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+        }
+
+        #atomic div.atomic-e {
+            visibility: hidden;
+            display: block;
+            position: relative;
+            width: 20px;
+            height: 100px;
+            overflow: hidden;
+        }
+
+        #atomic div.atomic-e div.arc {
+            z-index: -999;
+            position: absolute;
+            border-radius: 100px;
+            width: 200px;
+            height: 200px;
+            left: -192px;
+            top: -50px;
+            display: block;
+            border: 1px dashed #999;
+        }
+
+        #atomic div.atomic-e div.text {
+            display: block;
+            margin-top: 40px;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="uk-container uk-container-center" style="min-width:1220px">
+        <div class="uk-grid">
+            <div class="uk-width-1-1 uk-margin-top">
+                <table class="periodic">
+                    <tbody>
+                        <tr>
+                            <td colspan="19">
+                                <h1>元素周期表</h1>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="col">1</td>
+                            <td colspan="16"></td>
+                            <td>18</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td data-index="1" class="element">
+								
+							</td>
+                            <td class="col">2</td>
+                            <td colspan="2" rowspan="2"></td>
+                            <td colspan="4" rowspan="2">
+                                <div class="uk-align-center uk-vertical-align-middle">
+                                    <div id="focus" class="element">
+                                        <span class="index" style="font-size:1.2em;">112</span>
+                                        <span class="symbol" style="font-size:1.2em;">Hg</span>
+                                        <h3 style="font-size:2em; margin: 40px 0 15px 0;">铀</h3>
+                                        <span class="quality" style="font-size:1.2em">288.33</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td colspan="4" rowspan="2">
+                                <div id="atomic">
+                                    <div class="uk-grid uk-grid-collapse">
+                                        <div class="uk-width-2-10">
+                                            <div class="atomic-n">
+                                                <div class="circle">
+                                                </div>
+                                                <div class="text">
+                                                    +1
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-1-10">
+                                            <div data-index="0" class="atomic-e">
+                                                <div class="arc">
+                                                </div>
+                                                <div class="text">1</div>
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-1-10">
+                                            <div data-index="1" class="atomic-e">
+                                                <div class="arc">
+                                                </div>
+                                                <div class="text">1</div>
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-1-10">
+                                            <div data-index="2" class="atomic-e">
+                                                <div class="arc">
+                                                </div>
+                                                <div class="text">1</div>
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-1-10">
+                                            <div data-index="3" class="atomic-e">
+                                                <div class="arc">
+                                                </div>
+                                                <div class="text">1</div>
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-1-10">
+                                            <div data-index="4" class="atomic-e">
+                                                <div class="arc">
+                                                </div>
+                                                <div class="text">1</div>
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-1-10">
+                                            <div data-index="5" class="atomic-e">
+                                                <div class="arc">
+                                                </div>
+                                                <div class="text">1</div>
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-1-10">
+                                            <div data-index="6" class="atomic-e">
+                                                <div class="arc">
+                                                </div>
+                                                <div class="text">1</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="col">13</td>
+                            <td class="col">14</td>
+                            <td class="col">15</td>
+                            <td class="col">16</td>
+                            <td class="col">17</td>
+                            <td data-index="2" class="element"></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td data-index="3" class="element">
+                            <td data-index="4" class="element"></td>
+                            <td data-index="5" class="element"></td>
+                            <td data-index="6" class="element"></td>
+                            <td data-index="7" class="element"></td>
+                            <td data-index="8" class="element"></td>
+                            <td data-index="9" class="element"></td>
+                            <td data-index="10" class="element"></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td data-index="11" class="element"></td>
+                            <td data-index="12" class="element"></td>
+                            <td class="col">3</td>
+                            <td class="col">4</td>
+                            <td class="col">5</td>
+                            <td class="col">6</td>
+                            <td class="col">7</td>
+                            <td class="col">8</td>
+                            <td class="col">9</td>
+                            <td class="col">10</td>
+                            <td class="col">11</td>
+                            <td class="col">12</td>
+                            <td data-index="13" class="element"></td>
+                            <td data-index="14" class="element"></td>
+                            <td data-index="15" class="element"></td>
+                            <td data-index="16" class="element"></td>
+                            <td data-index="17" class="element"></td>
+                            <td data-index="18" class="element"></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td data-index="19" class="element"></td>
+                            <td data-index="20" class="element"></td>
+                            <td data-index="21" class="element"></td>
+                            <td data-index="22" class="element"></td>
+                            <td data-index="23" class="element"></td>
+                            <td data-index="24" class="element"></td>
+                            <td data-index="25" class="element"></td>
+                            <td data-index="26" class="element"></td>
+                            <td data-index="27" class="element"></td>
+                            <td data-index="28" class="element"></td>
+                            <td data-index="29" class="element"></td>
+                            <td data-index="30" class="element"></td>
+                            <td data-index="31" class="element"></td>
+                            <td data-index="32" class="element"></td>
+                            <td data-index="33" class="element"></td>
+                            <td data-index="34" class="element"></td>
+                            <td data-index="35" class="element"></td>
+                            <td data-index="36" class="element"></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td data-index="37" class="element"></td>
+                            <td data-index="38" class="element"></td>
+                            <td data-index="39" class="element"></td>
+                            <td data-index="40" class="element"></td>
+                            <td data-index="41" class="element"></td>
+                            <td data-index="42" class="element"></td>
+                            <td data-index="43" class="element"></td>
+                            <td data-index="44" class="element"></td>
+                            <td data-index="45" class="element"></td>
+                            <td data-index="46" class="element"></td>
+                            <td data-index="47" class="element"></td>
+                            <td data-index="48" class="element"></td>
+                            <td data-index="49" class="element"></td>
+                            <td data-index="50" class="element"></td>
+                            <td data-index="51" class="element"></td>
+                            <td data-index="52" class="element"></td>
+                            <td data-index="53" class="element"></td>
+                            <td data-index="54" class="element"></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td data-index="55" class="element"></td>
+                            <td data-index="56" class="element"></td>
+                            <td class="element lanthanides">
+                                <h3>镧系</h3>
+                            </td>
+                            <td data-index="72" class="element"></td>
+                            <td data-index="73" class="element"></td>
+                            <td data-index="74" class="element"></td>
+                            <td data-index="75" class="element"></td>
+                            <td data-index="76" class="element"></td>
+                            <td data-index="77" class="element"></td>
+                            <td data-index="78" class="element"></td>
+                            <td data-index="79" class="element"></td>
+                            <td data-index="80" class="element"></td>
+                            <td data-index="81" class="element"></td>
+                            <td data-index="82" class="element"></td>
+                            <td data-index="83" class="element"></td>
+                            <td data-index="84" class="element"></td>
+                            <td data-index="85" class="element"></td>
+                            <td data-index="86" class="element"></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td data-index="87" class="element"></td>
+                            <td data-index="88" class="element"></td>
+                            <td class="element actinides">
+                                <h3>锕系</h3>
+                            </td>
+                            <td data-index="104" class="element"></td>
+                            <td data-index="105" class="element"></td>
+                            <td data-index="106" class="element"></td>
+                            <td data-index="107" class="element"></td>
+                            <td data-index="108" class="element"></td>
+                            <td data-index="109" class="element"></td>
+                            <td data-index="110" class="element"></td>
+                            <td data-index="111" class="element"></td>
+                            <td data-index="112" class="element"></td>
+                            <td data-index="113" class="element"></td>
+                            <td data-index="114" class="element"></td>
+                            <td data-index="115" class="element"></td>
+                            <td data-index="116" class="element"></td>
+                            <td data-index="117" class="element"></td>
+                            <td data-index="118" class="element"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="19">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <h3>镧系</h3>
+                            </td>
+                            <td data-index="57" class="element"></td>
+                            <td data-index="58" class="element"></td>
+                            <td data-index="59" class="element"></td>
+                            <td data-index="60" class="element"></td>
+                            <td data-index="61" class="element"></td>
+                            <td data-index="62" class="element"></td>
+                            <td data-index="63" class="element"></td>
+                            <td data-index="64" class="element"></td>
+                            <td data-index="65" class="element"></td>
+                            <td data-index="66" class="element"></td>
+                            <td data-index="67" class="element"></td>
+                            <td data-index="68" class="element"></td>
+                            <td data-index="69" class="element"></td>
+                            <td data-index="70" class="element"></td>
+                            <td data-index="71" class="element"></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <h3>锕系</h3>
+                            </td>
+                            <td data-index="89" class="element"></td>
+                            <td data-index="90" class="element"></td>
+                            <td data-index="91" class="element"></td>
+                            <td data-index="92" class="element"></td>
+                            <td data-index="93" class="element"></td>
+                            <td data-index="94" class="element"></td>
+                            <td data-index="95" class="element"></td>
+                            <td data-index="96" class="element"></td>
+                            <td data-index="97" class="element"></td>
+                            <td data-index="98" class="element"></td>
+                            <td data-index="99" class="element"></td>
+                            <td data-index="100" class="element"></td>
+                            <td data-index="101" class="element"></td>
+                            <td data-index="102" class="element"></td>
+                            <td data-index="103" class="element"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
